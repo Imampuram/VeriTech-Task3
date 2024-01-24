@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Report</title>
+    <!--    font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- Custom Css-->
+    <!--    <link rel="stylesheet" href="./view.css">-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <!--  jquery cdn  -->
+    <script language="javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--     Search Bar Area starts-->
+
+        <div class="row">
+            <div class="col col-md-3">
+                <p>Filter by:</p>
+                <div class="form-input">
+                    <input id="name" class="form-check-input" name="name" type="checkbox">
+                    <label for="name" class="">Name</label>
+                </div>
+                <div class="form-input">
+                    <input id="email" class="form-check-input" name="email" type="checkbox">
+                    <label for="email" class="">Email</label>
+                </div>
+                <div class="form-input">
+                    <input id="course" class="form-check-input" name="course" type="checkbox">
+                    <label for="course" class="">Course: </label>
+                    <select name="course" id="course-option" disabled>
+                        <option value="">Select Option</option>
+                        <option value="java">Java</option>
+                        <option value="mern">MERN</option>
+                        <option value="mean">MEAN</option>
+                        <option value="python">Python</option>
+                    </select>
+                </div>
+                <div class="form-input">
+                    <input id="status" class="form-check-input" name="status" type="checkbox">
+                    <label for="status" class="">Status: </label>
+                    <select name="status" id="statusOption">
+                        <option value="">Select Option</option>
+                        <option value="Attend Demo">Need to Attend Demo</option>
+                        <option value="Follow Up">Follow Up</option>
+                        <option value="not interested">Not Intrested</option>
+                        <option value="Confirmed">Confirmed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col col-md-3">
+                <p>Sort by:</p>
+                <div class="form-input">
+                    <select name="status" id="status-option">
+                        <option value="">Select</option>
+                        <option value="ascOrd">Ascending</option>
+                        <option value="desOrd">Desending</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col col-md-3">
+                <p>Range:</p>
+                <div class="form-input">
+                    <label for="toDate">To:</label>
+                    <input id="toDate" class="form-input" name="toDate" type="date">
+                </div>
+                <div class="form-input">
+                    <label for="fromDate">From:</label>
+                    <input id="fromDate" class="form-input" name="fromDate" type="date">
+                </div>
+
+            </div>
+            <div class="col col-md-3 align-items-center justify-content-center">
+                <div class="form-input ">
+                    <button id="filterApply" class="btn btn-secondary" onclick="filterFunc()">Apply</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <!--      Search bar Area ends-->
+
+        <!--       Student detals lists here starts-->
+        <div class="row justify-content-center">
+            <div class="col col-md-10">
+                <p class="mt-3 h1 text-center text-danger">Student Report</p>
+                <table class="table table-striped">
+                    <thead class="table-dark text-center">
+                        <th>Name</th>
+                        <th>PhoneNo</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Status</th>
+                        <th>Enqiured On</th>
+                    </thead>
+                    <tbody id="excelDataTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--    <script type="application/javascript" src="assets/js/viewStudent.js"></script>-->
+    <script>
+        $(document).ready(function() {
+            invokeService('https://635a2c0538725a1746bf579b.mockapi.io/student/all');
+        });
+
+        function invokeService(endpoint) {
+            $.ajax({
+                url: endpoint,
+                crossDomain: true,
+                type: 'GET',
+                success: function(response) {
+                    console.log('resp==', response);
+                    //addAllColumnHeaders(response, "#excelDataTable");
+                    var len = response.length;
+
+                    for (var i = 0; i < len; i++) {
+                        var name = response[i].name;
+                        var mobile = response[i].mobile;
+                        var email = response[i].email;
+                        var course = response[i].course;
+                        var status = response[i].status;
+                        var enquiredOn = response[i].date;
+
+                        var tr_str = "<tr>" +
+                            "<td align='center'>" + name + "</td>" +
+                            "<td align='center'>" + mobile + "</td>" +
+                            "<td align='center'>" + email + "</td>" +
+                            "<td align='center'>" + course + "</td>" +
+                            "<td align='center'>" + status + "</td>" +
+                            "<td align='center'>" + enquiredOn + "</td>" +
+                            "</tr>";
+
+                        $("#excelDataTable").append(tr_str);
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+
+            var $checkBox = $('#status'),
+                $checkbox1 = $('#course'),
+                $select1 = $('#course-option'),
+                $select = $('#status-option');
+            $checkBox.on('change', function(e) {
+                if ($(this).is(':checked')) {
+                    $select.removeAttr('disabled');
+                } else {
+                    $select.attr('disabled', 'disabled');
+                }
+            });
+            $checkbox1.on('change', function(e) {
+                if ($(this).is(':checked')) {
+                    $select1.removeAttr('disabled');
+                } else {
+                    $select1.attr('disabled', 'disabled');
+                }
+            });
+        });
+
+
+
+
+        //filter report
+        function filterFunc() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("statusOption");
+            filter = input.value.toLowerCase();
+            table = document.getElementById("excelDataTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body></html>

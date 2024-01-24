@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        
+        * {
+            margin: 0%;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            background-color: white;
+            font-size: 20px;
+            color: black
+        }
+        
+        .header img {
+            width: 20%;
+            padding: 0.5rem 0.8rem;
+            margin-left: 1rem;
+        }
+        
+        nav {
+            display: flex;
+            flex-direction: row;
+            place-items: center;
+        }
+        nav ul {
+            display: inherit;
+            flex-direction: row;
+            margin-left: 2rem;
+            list-style: none;
+            align-content: flex-end;
+        }
+        
+/*
+        nav ul li {
+            justify-content: flex-end;
+        }
+*/
+        
+        li a {
+            text-decoration: none;
+            color: black;
+            padding: 1rem;
+            margin: 1rem auto;
+        }
+        
+        nav li a:hover {
+            background-color: black;
+            color: white;
+            animation: 5s ease-in;
+            
+        }
+    
+
+        
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .header img {
+            width: 20%;
+            padding: 0.5rem 0.8rem;
+            margin-left: 1rem;
+        }
+
+/*
+            .header-right {
+                float: none;
+            }
+*/
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <nav>
+            <img class="logo" src="QT.png" />
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</body>
+
+</html>

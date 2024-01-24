@@ -1,0 +1,8 @@
+[{
+    fullname: 'jon snow',
+    date: '21-10-2021',
+    email: 'jonsnow@got.com',
+    phone: '0000000000',
+    course: 'mern',
+    status: 'followUp'
+}]

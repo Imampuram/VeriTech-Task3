@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Student Details</title>
+
+
+
+
+    <!--    font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- Custom Css-->
+    <link rel="stylesheet" href="./view.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <!--  jquery cdn  -->
+    <script language="javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--     Search Bar Area starts-->
+        <div class="row ">
+            <div class="col d-flex justify-content-center mt-4 mb-2">
+                <input class="form-control-lg" type="text" placeholder="Enter mobileno or name" id="srchtxt" /><button type="submit" class=" mx-2 btn btn-lg btn-dark" id="srch" onclick="fetchStudent()">Search</button>
+            </div>
+            <hr>
+        </div>
+        <!--      Search bar Area ends-->
+        
+        <!--       Student detals lists here starts-->
+        <div class="row justify-content-center">
+            <div class="col col-md-10">
+                <p class="mt-5 h1 text-center text-danger">Student Details</p>
+                <table class="table table-striped">
+                    <thead class="table-dark text-center">
+                        <th>Name</th>
+                        <th>PhoneNo</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        <th>Status</th>
+                        <th>Enqiured On</th>
+                    </thead>
+                    <tbody id="excelDataTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript" src="assets/js/viewStudent.js"></script>
+</body>
+</html>
